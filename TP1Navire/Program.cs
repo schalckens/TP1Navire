@@ -17,22 +17,24 @@ namespace TP1Navire
             Navire unNavire;
             //instanciation de l'objet
             unNavire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827);
-            Affiche(unNavire);
+            //Affiche(unNavire);
+            Console.WriteLine(unNavire);
             //Déclaration ET instanciation d'un autre objet de la classe Navire
             Navire unAutreNavire = new Navire("IMO9839272", "MSC Isabelle", "Porte-conteneurs", 197500);
-            Affiche(unAutreNavire);
-            //
+            //Affiche(unAutreNavire);
+            Console.WriteLine(unAutreNavire);
             unAutreNavire = new Navire("IMO8715871", "MSC PILAR");
-            Affiche(unAutreNavire);
+            //Affiche(unAutreNavire);
+            Console.WriteLine(unAutreNavire);
         }
-        public static void Affiche(Navire unNavire)
-        {
-            //Console.WriteLine("\nIdentification : " + unNavire.Imo);
-            //Console.WriteLine("Nom : " + unNavire.Nom);
-            //Console.WriteLine("Type de Frêt : " + unNavire.LibelleFret);
-            //Console.WriteLine("Quantité de Frêt : " + unNavire.QteFretMaxi);
-            Console.WriteLine(unNavire);
-            Console.WriteLine("-----------------------------------------");
-        }
+        //public static void Affiche(Navire unNavire)
+        //{
+        //    //Console.WriteLine("\nIdentification : " + unNavire.Imo);
+        //    //Console.WriteLine("Nom : " + unNavire.Nom);
+        //    //Console.WriteLine("Type de Frêt : " + unNavire.LibelleFret);
+        //    //Console.WriteLine("Quantité de Frêt : " + unNavire.QteFretMaxi);
+        //    Console.WriteLine(unNavire); //possible grâce au override de la classe Navire à laquelle appartient unNavire
+        //    Console.WriteLine("-----------------------------------------");
+        //}
     }
 }
