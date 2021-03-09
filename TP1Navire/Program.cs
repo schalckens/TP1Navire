@@ -7,6 +7,7 @@ namespace TP1Navire
         static void Main()
         {
             TesterInstanciations();
+            TesterEnregistrerArrivee();
             Console.WriteLine("--Fin du Programme--");
             Console.ReadKey();
         }
@@ -27,6 +28,17 @@ namespace TP1Navire
             //Affiche(unAutreNavire);
             Console.WriteLine(unAutreNavire);
         }
+
+        public static void TesterEnregistrerArrivee()
+        {
+            Port port = new Port("Premier Port");
+            port.EnregistrerArrivee(new Navire("IMO9839272","MSC Isabella","Porte-conteneurs",197500));
+            port.EnregistrerArrivee(new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827));
+            port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
+            Console.WriteLine("Navires bien enregistrés dans le port");
+        }
+
+
         //public static void Affiche(Navire unNavire)
         //{
         //    //Console.WriteLine("\nIdentification : " + unNavire.Imo);
