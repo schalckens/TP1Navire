@@ -18,6 +18,7 @@ namespace TP1Navire
             Navire unNavire;
             //instanciation de l'objet
             unNavire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827);
+            //Méthode d'affichage #2
             //Affiche(unNavire);
             Console.WriteLine(unNavire);
             //Déclaration ET instanciation d'un autre objet de la classe Navire
@@ -38,7 +39,7 @@ namespace TP1Navire
             Console.WriteLine("Navires bien enregistrés dans le port");
         }
 
-
+        //Méthode d'affichage #1
         //public static void Affiche(Navire unNavire)
         //{
         //    //Console.WriteLine("\nIdentification : " + unNavire.Imo);
