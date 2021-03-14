@@ -11,11 +11,14 @@ namespace TP1Navire
             //TesterEnregistrerArrivee();
             //TesterRecupPosition();
             //TesterRecupPositionV2();
-            TesterEnregistrerDepart();
+            //TesterEnregistrerDepart();
+            TesterEstPresent();
             Console.WriteLine("--Fin du Programme--");
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Méthode permettant de Tester l'instanciation d'un nouveau navire de la classe Navire.
+        /// </summary>
         public static void TesterInstanciations()
         {
             //déclaration de l'objet unNavire de la classe Navire
@@ -33,7 +36,10 @@ namespace TP1Navire
             //Affiche(unAutreNavire);
             Console.WriteLine(unAutreNavire);
         }
-
+        /// <summary>
+        /// Méthode permettant de tester l'enregistrement de l'arrivée d'un 
+        /// navire de la classe Navire dans l'attribut de navires d'un port de la classe Port.
+        /// </summary>
         public static void TesterEnregistrerArrivee()
         {
             try
@@ -54,17 +60,26 @@ namespace TP1Navire
             }
 
         }
-
+        /// <summary>
+        /// Méthode permettant de tester la méthode RecupPosition(int imo) de la classe Port.
+        /// "Par le matricule imo de l'objet navire".
+        /// </summary>
         public static void TesterRecupPosition()
         {
             (new Port("Toulon")).TesterRecupPosition();
         }
-
+        /// <summary>
+        /// Méthode permettant de tester la méthode RecupPosition(Navire navire) de la classe Port.
+        /// "Par adresse de l'objet".
+        /// </summary>
         public static void TesterRecupPositionV2()
         {
             (new Port("Toulon")).TesterRecupPositionV2();
         }
-
+        /// <summary>
+        /// Méthode permettant de tester l'enregistrement du départ d'un 
+        /// navire de la classe Navire dans l'attribut de navires d'un port de la classe Port.
+        /// </summary>
         public static void TesterEnregistrerDepart()
         {
             try
@@ -85,6 +100,20 @@ namespace TP1Navire
                 Console.WriteLine(ex.Message); ;
             }
             
+        }
+        /// <summary>
+        /// Méthode permettant de tester la méthode EstPresent(intImo) de la classe Port.
+        /// </summary>
+        public static void TesterEstPresent()
+        {
+            Port port = new Port("Toulon");
+            port.EnregistrerArrivee(new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827));
+            port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500));
+            port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
+            string imo = "IMO9427639";
+            Console.WriteLine("Le navire " + imo + "est présent dans le port : " + port.EstPresent(imo));
+            imo = "IMO1111111";
+            Console.WriteLine("Le navire " + imo + "est présent dans le port : " + port.EstPresent(imo));
         }
         //Méthode d'affichage #1
         //public static void Affiche(Navire unNavire)

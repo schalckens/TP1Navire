@@ -9,11 +9,20 @@ namespace TP1Navire
         private int nbNavireMax = 5;
         private List<Navire> navires = new List<Navire>();
 
+        /// <summary>
+        /// Constructeur de la classe Port.
+        /// </summary>
+        /// <param name="nom"> nom du port </param>
         public Port(string nom)
         {
             this.nom = nom;
         }
 
+        /// <summary>
+        /// Méthode permettant d'enregistrer l'arrivee d'un navire de la classe Navire
+        /// dans l'attribut navires d'un objet port de la classe Port.
+        /// </summary>
+        /// <param name="navire"> objet navire de la classe Navire </param>
         public void EnregistrerArrivee(Navire navire)
         {
             if (navires.Count < nbNavireMax)
