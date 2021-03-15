@@ -1,20 +1,18 @@
 ﻿using System;
+using GestionNavire.Classesmetier;
 
-namespace TP1Navire
+namespace GestionNavire.Application
 {
     class Program
     {
         static void Main()
         {
 
-            //TesterInstanciations();
-            //TesterEnregistrerArrivee();
-            //TesterRecupPosition();
-            //TesterRecupPositionV2();
-            //TesterEnregistrerDepart();
-            //TesterEstPresent();
+            TesterInstanciations();
+            TesterEnregistrerArrivee();
+            TesterEnregistrerDepart();
+            
             Console.WriteLine("--Fin du Programme--");
-            Console.ReadKey();
         }
         /// <summary>
         /// Méthode permettant de Tester l'instanciation d'un nouveau navire de la classe Navire.
@@ -60,22 +58,7 @@ namespace TP1Navire
             }
 
         }
-        /// <summary>
-        /// Méthode permettant de tester la méthode RecupPosition(int imo) de la classe Port.
-        /// "Par le matricule imo de l'objet navire".
-        /// </summary>
-        public static void TesterRecupPosition()
-        {
-            (new Port("Toulon")).TesterRecupPosition();
-        }
-        /// <summary>
-        /// Méthode permettant de tester la méthode RecupPosition(Navire navire) de la classe Port.
-        /// "Par adresse de l'objet".
-        /// </summary>
-        public static void TesterRecupPositionV2()
-        {
-            (new Port("Toulon")).TesterRecupPositionV2();
-        }
+        
         /// <summary>
         /// Méthode permettant de tester l'enregistrement du départ d'un 
         /// navire de la classe Navire dans l'attribut de navires d'un port de la classe Port.
@@ -91,7 +74,7 @@ namespace TP1Navire
                 port.EnregistrerDepart("IMO8715871");
                 Console.WriteLine("Depart du navire IMO8715871 enregistré");
                 port.EnregistrerDepart("IMO1111111");
-                Console.WriteLine("Depart du navire IMO1111111 enregistré0");
+                Console.WriteLine("Depart du navire IMO1111111 enregistré");
                 Console.WriteLine("Fin des enregistrements des départs");
             }
             catch (Exception ex)
@@ -101,29 +84,5 @@ namespace TP1Navire
             }
             
         }
-        /// <summary>
-        /// Méthode permettant de tester la méthode EstPresent(intImo) de la classe Port.
-        /// </summary>
-        public static void TesterEstPresent()
-        {
-            Port port = new Port("Toulon");
-            port.EnregistrerArrivee(new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827));
-            port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500));
-            port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
-            string imo = "IMO9427639";
-            Console.WriteLine("Le navire " + imo + "est présent dans le port : " + port.EstPresent(imo));
-            imo = "IMO1111111";
-            Console.WriteLine("Le navire " + imo + "est présent dans le port : " + port.EstPresent(imo));
-        }
-        //Méthode d'affichage #1
-        //public static void Affiche(Navire unNavire)
-        //{
-        //    //Console.WriteLine("\nIdentification : " + unNavire.Imo);
-        //    //Console.WriteLine("Nom : " + unNavire.Nom);
-        //    //Console.WriteLine("Type de Frêt : " + unNavire.LibelleFret);
-        //    //Console.WriteLine("Quantité de Frêt : " + unNavire.QteFretMaxi);
-        //    Console.WriteLine(unNavire); //possible grâce au override de la classe Navire à laquelle appartient unNavire
-        //    Console.WriteLine("-----------------------------------------");
-        //}
     }
 }

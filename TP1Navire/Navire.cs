@@ -1,4 +1,4 @@
-﻿namespace TP1Navire
+﻿namespace GestionNavire.Classesmetier
 {
     class Navire
     {
