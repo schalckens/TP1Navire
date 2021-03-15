@@ -9,8 +9,8 @@ namespace TP1Navire
 
             //TesterInstanciations();
             //TesterEnregistrerArrivee();
-            //TesterRecupPosition();
-            //TesterRecupPositionV2();
+            TesterRecupPosition();
+            TesterRecupPositionV2();
             //TesterEnregistrerDepart();
             //TesterEstPresent();
             Console.WriteLine("--Fin du Programme--");
