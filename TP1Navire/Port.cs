@@ -25,7 +25,7 @@ namespace TP1Navire
         /// <param name="navire"> objet navire de la classe Navire </param>
         public void EnregistrerArrivee(Navire navire)
         {
-            if (navires.Count < nbNavireMax)
+            if (this.navires.Count < nbNavireMax)
             {
                 this.navires.Add(navire);
             }
@@ -37,10 +37,10 @@ namespace TP1Navire
 
         public void EnregistrerDepart(string imo)
         {
-
-            if (EstPresent(imo))
+            int index = RecupPosition(imo);
+            if (index >= 0)
             {
-                this.navires.RemoveAt(RecupPosition(imo));
+                this.navires.RemoveAt(index);
             }
             else
             {
@@ -49,15 +49,7 @@ namespace TP1Navire
         }
         public bool EstPresent(string imo)
         {
-            foreach (Navire nav in this.navires)
-            {
-
-                if (nav.Imo == imo)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return RecupPosition(imo) >= 0;
         }
 
         public void TesterRecupPosition()
@@ -88,29 +80,23 @@ namespace TP1Navire
 
         private int RecupPosition(string imo)
         {
-
-            if (EstPresent(imo))
+            int i = 0;
+            while ( i < this.navires.Count && this.navires[i].Imo != imo )
             {
-                foreach (Navire nav in this.navires)
-                {
-
-                    if (nav.Imo == imo)
-                    {
-                        return RecupPosition(nav);
-                    }
-                }
+                i++;
             }
-
-            return -1;
+            if (i < this.navires.Count)
+            {
+                return i;
+            }
+            else
+            {
+                return -1;
+            }
         }
         private int RecupPosition(Navire navire)
         {
-            if (this.navires.Contains(navire))
-            {
-                return this.navires.IndexOf(navire);
-            }
-            return -1;
-        }
+            return RecupPosition(navire.Imo);        }
 
     }
 }

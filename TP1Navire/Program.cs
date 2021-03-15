@@ -12,7 +12,7 @@ namespace TP1Navire
             //TesterRecupPosition();
             //TesterRecupPositionV2();
             //TesterEnregistrerDepart();
-            TesterEstPresent();
+            //TesterEstPresent();
             Console.WriteLine("--Fin du Programme--");
             Console.ReadKey();
         }
@@ -48,10 +48,10 @@ namespace TP1Navire
                 port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500));
                 port.EnregistrerArrivee(new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827));
                 port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
-                port.EnregistrerArrivee(new Navire("IMO9552149", "MSC Bastien"));
-                port.EnregistrerArrivee(new Navire("IMO9554589", "MSC Emilou"));
-                port.EnregistrerArrivee(new Navire("IMO9457149", "MSC Julien"));
-                port.EnregistrerArrivee(new Navire("IMO9852149", "MSC Pastaga"));
+                //port.EnregistrerArrivee(new Navire("IMO9552149", "MSC Bastien"));
+                //port.EnregistrerArrivee(new Navire("IMO9554589", "MSC Emilou"));
+                //port.EnregistrerArrivee(new Navire("IMO9457149", "MSC Julien"));
+                //port.EnregistrerArrivee(new Navire("IMO9852149", "MSC Pastaga"));
                 Console.WriteLine("Navires bien enregistrés dans le port");
             }
             catch (Exception ex)
