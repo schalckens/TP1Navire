@@ -7,32 +7,38 @@ namespace GestionNavire.Application
     {
         static void Main()
         {
-
-            TesterInstanciations();
-            TesterEnregistrerArrivee();
-            TesterEnregistrerDepart();
+            try
+            {
+                Instanciations();
+                //TesterEnregistrerArrivee();
+                //TesterEnregistrerDepart();
+                Console.WriteLine("--Fin normale du programme--");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally { Console.ReadKey(); }
             
-            Console.WriteLine("--Fin du Programme--");
+            
         }
         /// <summary>
         /// Méthode permettant de Tester l'instanciation d'un nouveau navire de la classe Navire.
         /// </summary>
-        public static void TesterInstanciations()
+        public static void Instanciations()
         {
-            //déclaration de l'objet unNavire de la classe Navire
-            Navire unNavire;
-            //instanciation de l'objet
-            unNavire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827);
-            //Méthode d'affichage #2
-            //Affiche(unNavire);
-            Console.WriteLine(unNavire);
-            //Déclaration ET instanciation d'un autre objet de la classe Navire
-            Navire unAutreNavire = new Navire("IMO9839272", "MSC Isabelle", "Porte-conteneurs", 197500);
-            //Affiche(unAutreNavire);
-            Console.WriteLine(unAutreNavire);
-            unAutreNavire = new Navire("IMO8715871", "MSC PILAR");
-            //Affiche(unAutreNavire);
-            Console.WriteLine(unAutreNavire);
+            try
+            {
+                Navire navire = new Navire("IMO9427639","Copper Spirit","Hydrocarbures",156827);
+                navire = new Navire("IMO9839272", "MSC Isabella","Porte-conteneurs",197500);
+                navire = new Navire("IMO8715871", "MSC PILAR", "Porte-conteneurs", 67183);
+                navire = new Navire("XMO9235232", "FORTUNE TRADER", "Cargo", 74750);
+                navire = new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message); 
+            }
         }
         /// <summary>
         /// Méthode permettant de tester l'enregistrement de l'arrivée d'un 

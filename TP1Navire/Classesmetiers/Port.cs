@@ -18,6 +18,7 @@ namespace GestionNavire.Classesmetier
             this.nom = nom;
         }
 
+
         /// <summary>
         /// Méthode permettant d'enregistrer l'arrivee d'un navire de la classe Navire
         /// dans l'attribut navires d'un objet port de la classe Port.
@@ -25,9 +26,9 @@ namespace GestionNavire.Classesmetier
         /// <param name="navire"> objet navire de la classe Navire </param>
         public void EnregistrerArrivee(Navire navire)
         {
-            if (this.navires.Count < nbNavireMax)
+            if (this.Navires.Count < NbNavireMax)
             {
-                this.navires.Add(navire.Imo,navire);
+                this.Navires.Add(navire.Imo,navire);
             }
             else
             {
@@ -37,14 +38,16 @@ namespace GestionNavire.Classesmetier
 
         public void EnregistrerDepart(string imo)
         {
-            if (this.navires.ContainsKey(imo))
+            if (this.Navires.ContainsKey(imo))
             {
-                this.navires.Remove(imo);
+                this.Navires.Remove(imo);
             }
             else
             {
                 throw new Exception("Impossible d'enregister le navire " + imo + " , il n'est pas dans le port");
             }    
         }
+        public int NbNavireMax { get => nbNavireMax;}
+        internal Dictionary<string, Navire> Navires { get => navires;}
     }
 }
