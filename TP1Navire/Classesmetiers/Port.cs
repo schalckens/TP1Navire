@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionNavire.Exceptions;
+using System;
 using System.Collections.Generic;
 
 namespace GestionNavire.Classesmetier
@@ -32,7 +33,7 @@ namespace GestionNavire.Classesmetier
             }
             else
             {
-                throw new Exception("Ajout imposible, le port est complet");
+                throw new GestionPortException("Ajout imposible, le port est complet");
             }
         }
 
@@ -44,7 +45,7 @@ namespace GestionNavire.Classesmetier
             }
             else
             {
-                throw new Exception("Impossible d'enregister le navire " + imo + " , il n'est pas dans le port");
+                throw new GestionPortException("Impossible d'enregister le navire " + imo + " , il n'est pas dans le port");
             }    
         }
         public int NbNavireMax { get => nbNavireMax;}

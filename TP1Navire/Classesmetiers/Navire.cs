@@ -1,4 +1,6 @@
 ﻿using System.Text.RegularExpressions;
+using System;
+using GestionNavire.Exceptions;
 
 namespace GestionNavire.Classesmetier
 {
@@ -17,7 +19,7 @@ namespace GestionNavire.Classesmetier
             }
             else
             {
-                throw new System.Exception("Erreur : IMO non valide.");
+                throw new GestionPortException("Erreur : IMO non valide.");
             }
             this.nom = nom;
             this.libelleFret = libelleFret;
@@ -51,7 +53,7 @@ namespace GestionNavire.Classesmetier
                 }
                 else
                 {
-                    throw new System.Exception("Erreur, quantité de fret non valide");
+                    throw new GestionPortException("Erreur, quantité de fret non valide");
                 }
             } 
         }
