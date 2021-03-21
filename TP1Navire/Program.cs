@@ -1,16 +1,45 @@
 ﻿using System;
 using GestionNavire.Classesmetier;
+using GestionNavire.Exceptions;
 
 namespace GestionNavire.Application
 {
     class Program
     {
+        private static Port port;
         static void Main()
         {
             try
             {
-                Instanciations();
-                //TesterEnregistrerArrivee();
+                port = new Port("Toulon");
+                //Instanciations();
+                try
+                {
+                    TesterEnregistrerArrivee();
+                }
+                catch (GestionPortException ex)
+                {
+
+                    Console.WriteLine(ex.Message); ;
+                }
+                try
+                {
+                    TesterEnregistrerArriveeV2();
+                }
+                catch (GestionPortException ex)
+                {
+
+                    Console.WriteLine(ex.Message); ;
+                }
+                try
+                {
+                    TesterEnregistrerDepart();
+                }
+                catch (GestionPortException ex)
+                {
+
+                    Console.WriteLine(ex.Message); ;
+                }
                 //TesterEnregistrerDepart();
                 Console.WriteLine("--Fin normale du programme--");
             }
@@ -35,7 +64,7 @@ namespace GestionNavire.Application
                 navire = new Navire("XMO9235232", "FORTUNE TRADER", "Cargo", 74750);
                 navire = new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201);
             }
-            catch (Exception ex)
+            catch (GestionPortException ex)
             {
                 Console.WriteLine(ex.Message); 
             }
@@ -46,25 +75,44 @@ namespace GestionNavire.Application
         /// </summary>
         public static void TesterEnregistrerArrivee()
         {
+            Navire navire = null;
             try
             {
-                Port port = new Port("Premier Port");
-                port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500));
-                port.EnregistrerArrivee(new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827));
-                port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
-                //port.EnregistrerArrivee(new Navire("IMO9552149", "MSC Bastien"));
-                //port.EnregistrerArrivee(new Navire("IMO9554589", "MSC Emilou"));
-                //port.EnregistrerArrivee(new Navire("IMO9457149", "MSC Julien"));
-                //port.EnregistrerArrivee(new Navire("IMO9852149", "MSC Pastaga"));
-                Console.WriteLine("Navires bien enregistrés dans le port");
+                navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827);
+                port.EnregistrerArrivee(navire);
+                navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827);
+                port.EnregistrerArrivee(navire);
             }
-            catch (Exception ex)
+            catch (GestionPortException ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
         }
-        
+        public static void TesterEnregistrerArriveeV2()
+        {
+            Navire navire = null;
+            try
+            {
+                port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isbella", "porte-conteneurs", 197500));
+                port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
+                port.EnregistrerArrivee(new Navire("IMO9235232", "FORTUNE TRADER", "Cargo", 74750));
+                port.EnregistrerArrivee(new Navire("IMO9405423", "SERENEA", "tANKER", 158583));
+                port.EnregistrerArrivee(new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201));
+                port.EnregistrerArrivee(new Navire("IMO9748681", "NORDIC SPACE", "Tankers", 157587));
+
+            }
+            catch (GestionPortException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ArgumentException)
+            {
+                throw new GestionPortException("Le navire" + navire.Imo + " est déjà enregistré");
+            }
+
+        }
+
         /// <summary>
         /// Méthode permettant de tester l'enregistrement du départ d'un 
         /// navire de la classe Navire dans l'attribut de navires d'un port de la classe Port.
@@ -73,17 +121,11 @@ namespace GestionNavire.Application
         {
             try
             {
-                Port port = new Port("Toulon");
-                port.EnregistrerArrivee(new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827));
-                port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500));
-                port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
-                port.EnregistrerDepart("IMO8715871");
-                Console.WriteLine("Depart du navire IMO8715871 enregistré");
+                port.EnregistrerDepart("IMO9427639");
+                port.EnregistrerDepart("IMO9405423");
                 port.EnregistrerDepart("IMO1111111");
-                Console.WriteLine("Depart du navire IMO1111111 enregistré");
-                Console.WriteLine("Fin des enregistrements des départs");
             }
-            catch (Exception ex)
+            catch (GestionPortException ex)
             {
 
                 Console.WriteLine(ex.Message); ;

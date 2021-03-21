@@ -27,18 +27,29 @@ namespace GestionNavire.Classesmetier
         /// <param name="navire"> objet navire de la classe Navire </param>
         public void EnregistrerArrivee(Navire navire)
         {
-            if (this.Navires.Count < NbNavireMax)
+            try
             {
-                this.Navires.Add(navire.Imo,navire);
+                if (this.Navires.Count < this.NbNavireMax)
+                {
+                    this.Navires.Add(navire.Imo, navire);
+                }
+                else
+                {
+                    throw new GestionPortException("Ajout imposible, le port est complet");
+                }
+
             }
-            else
+            catch (ArgumentException)
             {
-                throw new GestionPortException("Ajout imposible, le port est complet");
+
+                throw new GestionPortException("Le navire " + navire.Imo + " est déjà enregistré");
             }
+            
         }
 
         public void EnregistrerDepart(string imo)
         {
+
             if (this.Navires.ContainsKey(imo))
             {
                 this.Navires.Remove(imo);
