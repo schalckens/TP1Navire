@@ -23,21 +23,17 @@ namespace GestionNavire.ClassesMetiers
 
         public void Stocker(int quantite)
         {
-            if (quantite >= 0)
+            if (quantite < 0)
             {
-                if ( quantite <= this.CapaciteDispo)
-                {
-                    this.CapaciteDispo -= quantite;
-
-                }
-                else
-                {
-                    throw new GestionPortException("Impossible de stocker plus que la capacité disponible dans le stockage");
-                }
+                throw new GestionPortException("La quantite à stocker dans un stockage ne peut être négative ou nulle");
+            }
+            else if (quantite > this.capaciteDispo)
+            {
+                throw new GestionPortException("Impossible de stocker plus que la capacité disponible dans le stockage");
             }
             else
             {
-                throw new GestionPortException("La quantite à stocker dans un stockage ne peut être négative ou nulle");
+                this.capaciteDispo -= quantite;
             }
         }
         public int Numero { get => numero; }

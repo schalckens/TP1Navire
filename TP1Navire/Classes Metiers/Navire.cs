@@ -30,6 +30,10 @@ namespace GestionNavire.ClassesMetiers
             {
                 this.qteFret = qteFret;
             }
+            else
+            {
+                throw new GestionPortException("Valeur incohérente pour la quantité de fret stockée dans le navire");
+            }
         }
         public Navire(string imo, string nom):this(imo,nom,"Indéfini",0,0){}
 
@@ -87,7 +91,7 @@ namespace GestionNavire.ClassesMetiers
         }
 
         public int QteFret { get => qteFret;}
-        public string Nom { get => nom;  }
+        public string Nom { get => nom; set => nom = value; }
         public string LibelleFret { get => libelleFret; }
     }
 }

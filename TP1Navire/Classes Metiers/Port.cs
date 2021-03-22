@@ -30,9 +30,9 @@ namespace GestionNavire.ClassesMetiers
         {
             try
             {
-                if (this.Navires.Count < this.NbNavireMax)
+                if (this.navires.Count < this.NbNavireMax)
                 {
-                    this.Navires.Add(navire.Imo, navire);
+                    this.navires.Add(navire.Imo, navire);
                 }
                 else
                 {
@@ -51,9 +51,9 @@ namespace GestionNavire.ClassesMetiers
         public void EnregistrerDepart(string imo)
         {
 
-            if (this.Navires.ContainsKey(imo))
+            if (this.navires.ContainsKey(imo))
             {
-                this.Navires.Remove(imo);
+                this.navires.Remove(imo);
             }
             else
             {
@@ -81,8 +81,8 @@ namespace GestionNavire.ClassesMetiers
 
         public void Dechargement(string imo)
         {
-            Navire navire = GetNavire(imo);
 
+            Navire navire = GetNavire(imo);
             if (navire != null && navire.LibelleFret == "Porte-conteneurs")
             {
                 int i = 0;
@@ -90,9 +90,8 @@ namespace GestionNavire.ClassesMetiers
                 {
                     if (this.stockages[i].CapaciteDispo >= 0 && this.stockages[i].CapaciteDispo > navire.QteFret)
                     {
-                        this.stockages[i].Stocker(navire.QteFret);
                         navire.Decharger(navire.QteFret);
-
+                        this.stockages[i].Stocker(navire.QteFret);
                     }
                     else
                     {
@@ -102,7 +101,7 @@ namespace GestionNavire.ClassesMetiers
                     }
                     i++;
                 }
-                if (i < this.stockages.Count)
+                if (navire.EstDecharge())
                 {
                     Console.WriteLine("Le navire à bien été déchargé");
                 }

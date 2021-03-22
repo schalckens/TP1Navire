@@ -57,21 +57,21 @@ namespace GestionNavire.Application
         /// <summary>
         /// Méthode permettant de Tester l'instanciation d'un nouveau navire de la classe Navire.
         /// </summary>
-        public static void Instanciations()
-        {
-            try
-            {
-                Navire navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 156827);
-                navire = new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500, 197500);
-                navire = new Navire("IMO8715871", "MSC PILAR", "Porte-conteneurs", 67183, 67183);
-                navire = new Navire("XMO9235232", "FORTUNE TRADER", "Cargo", 74750, 74750);
-                navire = new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201, 51201);
-            }
-            catch (GestionPortException ex)
-            {
-                Console.WriteLine(ex.Message); 
-            }
-        }
+        //public static void Instanciations()
+        //{
+        //    try
+        //    {
+        //        Navire navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 156827);
+        //        navire = new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500, 197500);
+        //        navire = new Navire("IMO8715871", "MSC PILAR", "Porte-conteneurs", 67183, 67183);
+        //        navire = new Navire("XMO9235232", "FORTUNE TRADER", "Cargo", 74750, 74750);
+        //        navire = new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201, 51201);
+        //    }
+        //    catch (GestionPortException ex)
+        //    {
+        //        Console.WriteLine(ex.Message); 
+        //    }
+        //}
 
         public static void InitPort()
         {
@@ -91,10 +91,11 @@ namespace GestionNavire.Application
             Navire navire = null;
             try
             {
-                navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 156827);
+                navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 150000);
                 port.EnregistrerArrivee(navire);
-                navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 156827);
+                navire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 150000);
                 port.EnregistrerArrivee(navire);
+                Console.WriteLine("Navires bien enregistrés dans le port");
             }
             catch (GestionPortException ex)
             {
@@ -107,11 +108,11 @@ namespace GestionNavire.Application
             Navire navire = null;
             try
             {
-                port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isbella", "Porte-conteneurs", 197500, 197500));
+                port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isabella", "Porte-conteneurs", 197500, 150000));
                 port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
-                port.EnregistrerArrivee(new Navire("IMO9235232", "FORTUNE TRADER", "Cargo", 74750, 74750));
-                port.EnregistrerArrivee(new Navire("IMO9405423", "SERENEA", "tANKER", 158583, 158583));
-                port.EnregistrerArrivee(new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201, 51201));
+                port.EnregistrerArrivee(new Navire("IMO9235232", "FORTUNE TRADER", "Cargo", 74750, 70000));
+                port.EnregistrerArrivee(new Navire("IMO9405423", "SERENEA", "tANKER", 158583, 150000));
+                port.EnregistrerArrivee(new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201, 50000));
                 
             }
             catch (GestionPortException ex)
@@ -146,42 +147,21 @@ namespace GestionNavire.Application
 
         public static void TesterInstanciationsStockage()
         {
-            try
-            {
-                new Stockage(1, 15000);
-            }
+            try{new Stockage(1, 15000);}
             catch (GestionPortException ex)
-            {
+            {Console.WriteLine(ex.Message);}
 
-                Console.WriteLine(ex.Message);
-            }
-            try
-            {
-                new Stockage(2, 12000,10000);
-            }
+            try{new Stockage(2, 12000,10000);}
             catch (GestionPortException ex)
-            {
+            {Console.WriteLine(ex.Message);}
 
-                Console.WriteLine(ex.Message);
-            }
-            try
-            {
-                new Stockage(3, -25000,-10000);
-            }
+            try{new Stockage(3, -25000,-10000);}
             catch (GestionPortException ex)
-            {
+            {Console.WriteLine(ex.Message);}
 
-                Console.WriteLine(ex.Message);
-            }
-            try
-            {
-                new Stockage(4, 15000,20000);
-            }
+            try{new Stockage(4, 15000,20000);}
             catch (GestionPortException ex)
-            {
-
-                Console.WriteLine(ex.Message);
-            }
+            {Console.WriteLine(ex.Message);}
 
         }
 
@@ -215,7 +195,6 @@ namespace GestionNavire.Application
                 String imo = "IMO1111111";
                 port.Dechargement(imo);
                 Console.WriteLine("Navire " + imo + " déchargé");
-                port.EnregistrerDepart(imo);
             }
             catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
             try
@@ -223,7 +202,6 @@ namespace GestionNavire.Application
                 String imo = "IMO9574004";
                 port.Dechargement(imo);
                 Console.WriteLine("Navire " + imo + " déchargé");
-                port.EnregistrerDepart(imo);
             }
             catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
             try
@@ -241,7 +219,6 @@ namespace GestionNavire.Application
                 String imo = "IMO9776432";
                 port.Dechargement(imo);
                 Console.WriteLine("Navire " + imo + " déchargé");
-                port.EnregistrerDepart(imo);
             }
             catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
         }
