@@ -2,7 +2,7 @@
 using System;
 using GestionNavire.Exceptions;
 
-namespace GestionNavire.Classesmetier
+namespace GestionNavire.ClassesMetiers
 {
     class Navire
     {
@@ -12,7 +12,7 @@ namespace GestionNavire.Classesmetier
         private int qteFretMaxi;
         private int qteFret;
 
-        public Navire(string imo, string nom, string libelleFret, int qteFretMaxi)
+        public Navire(string imo, string nom, string libelleFret, int qteFretMaxi, int qteFret)
         {
             if (IsIMOValide(imo)) 
             {
@@ -25,8 +25,13 @@ namespace GestionNavire.Classesmetier
             this.nom = nom;
             this.libelleFret = libelleFret;
             this.QteFretMaxi = qteFretMaxi;
+
+            if (qteFret >= 0 && qteFret <= this.QteFretMaxi)
+            {
+                this.qteFret = qteFret;
+            }
         }
-        public Navire(string imo, string nom):this(imo,nom,"Indéfini",0){}
+        public Navire(string imo, string nom):this(imo,nom,"Indéfini",0,0){}
 
         public override string ToString()
         {
@@ -38,6 +43,29 @@ namespace GestionNavire.Classesmetier
             string prototypeIMO = @"IMO\d{7}$";
             Match match = Regex.Match(imo, prototypeIMO);
             return match.Success;
+        }
+
+        public void Decharger(int quantite)
+        {
+            if(quantite > 0 && quantite<this.QteFret)
+            {
+                this.qteFret -= quantite;
+            }
+            else
+            {
+                if(quantite > 0)
+                {
+                    throw new GestionPortException("La quantité à décharger ne peut être négative ou nulle");
+                }
+                else
+                {
+                    throw new GestionPortException("Impossible de décharger plus que la quantité de fret dans le navire");
+                }
+            }
+        }
+        public bool EstDecharge()
+        {
+            return this.qteFret == 0;
         }
 
         public string Imo { get => imo;}
@@ -59,5 +87,6 @@ namespace GestionNavire.Classesmetier
             } 
         }
 
+        public int QteFret { get => qteFret;}
     }
 }

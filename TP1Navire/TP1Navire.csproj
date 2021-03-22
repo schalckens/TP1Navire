@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Classesmetiers\Port.cs~RF252f2ffc.TMP" />
+    <None Remove="Classes Metiers\Port.cs~RF252f2ffc.TMP" />
   </ItemGroup>
 
 </Project>
