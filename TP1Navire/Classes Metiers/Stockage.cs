@@ -23,7 +23,7 @@ namespace GestionNavire.ClassesMetiers
 
         public void Stocker(int quantite)
         {
-            if (quantite > 0)
+            if (quantite >= 0)
             {
                 if ( quantite <= this.CapaciteDispo)
                 {
