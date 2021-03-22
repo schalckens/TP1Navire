@@ -40,20 +40,20 @@ namespace GestionNavire.ClassesMetiers
 
         public bool IsIMOValide(string imo) 
         {
-            string prototypeIMO = @"IMO\d{7}$";
+            string prototypeIMO = "^IMO[0-9]{7}$";
             Match match = Regex.Match(imo, prototypeIMO);
             return match.Success;
         }
 
         public void Decharger(int quantite)
         {
-            if(quantite > 0 && quantite<this.QteFret)
+            if(quantite > 0 && quantite <= this.QteFret)
             {
                 this.qteFret -= quantite;
             }
             else
             {
-                if(quantite > 0)
+                if(quantite <= 0)
                 {
                     throw new GestionPortException("La quantité à décharger ne peut être négative ou nulle");
                 }
@@ -69,8 +69,7 @@ namespace GestionNavire.ClassesMetiers
         }
 
         public string Imo { get => imo;}
-        public string Nom { get; set; }
-        public string LibelleFret { get; set; }
+        
         public int QteFretMaxi 
         { 
             get => qteFretMaxi; 
@@ -88,5 +87,7 @@ namespace GestionNavire.ClassesMetiers
         }
 
         public int QteFret { get => qteFret;}
+        public string Nom { get => nom;  }
+        public string LibelleFret { get => libelleFret; }
     }
 }

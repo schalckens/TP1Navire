@@ -25,7 +25,7 @@ namespace GestionNavire.ClassesMetiers
         {
             if (quantite > 0)
             {
-                if ( quantite < this.CapaciteDispo)
+                if ( quantite <= this.CapaciteDispo)
                 {
                     this.CapaciteDispo -= quantite;
 
@@ -59,9 +59,9 @@ namespace GestionNavire.ClassesMetiers
         public int CapaciteDispo 
         { 
             get => capaciteDispo;
-            set
+            private set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     if (this.capaciteMaxi >= value)
                     {

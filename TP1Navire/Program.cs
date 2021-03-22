@@ -22,6 +22,7 @@ namespace GestionNavire.Application
                 //TesterInstanciationsStockage();
 
                 port = new Port("Toulon");
+                InitPort();
                 ////Instanciations();
                 try { TesterEnregistrerArrivee(); }
                 catch (GestionPortException ex)
@@ -70,6 +71,16 @@ namespace GestionNavire.Application
             {
                 Console.WriteLine(ex.Message); 
             }
+        }
+
+        public static void InitPort()
+        {
+            Port port = new Port("Toulon");
+            Navire unNavire;
+            unNavire = new Navire("IMO9427639", "Copper Spirit", "Hydrocarbures", 156827, 120000);
+            Navire unAutreNavire = new Navire("IMO9839272", "MSC Isabelle", "Porte-conteneurs", 197500, 13000);
+            unAutreNavire = new Navire("IMO8715871", "MSC PILAR");
+            Console.WriteLine("Fin de chargement du Port");
         }
         /// <summary>
         /// Méthode permettant de tester l'enregistrement de l'arrivée d'un 
@@ -172,17 +183,6 @@ namespace GestionNavire.Application
                 Console.WriteLine(ex.Message);
             }
 
-        }
-
-
-        public static void InitPort()
-        {
-            port.EnregistrerArrivee(new Navire("IMO9839272", "MSC Isbella", "Porte-conteneurs", 197500, 197500));
-            port.EnregistrerArrivee(new Navire("IMO8715871", "MSC PILAR"));
-            port.EnregistrerArrivee(new Navire("IMO9235232", "FORTUNE TRADER", "Cargo", 74750, 74750));
-            port.EnregistrerArrivee(new Navire("IMO9405423", "SERENEA", "tANKER", 158583, 158583));
-            port.EnregistrerArrivee(new Navire("IMO9574004", "TRITON SEAHAWK", "Hydrocarbures", 51201, 51201));
-            port.EnregistrerArrivee(new Navire("IMO9748681", "NORDIC SPACE", "Tankers", 157587, 157587));
         }
 
 
