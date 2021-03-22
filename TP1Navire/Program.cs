@@ -228,7 +228,7 @@ namespace GestionNavire.Application
             catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
             try
             {
-                port.EnregistrerArrivee(new Navire("IMO978641", "EVER GLOBE", "Porte-conteneurs", 198937, 190000));
+                port.EnregistrerArrivee(new Navire("IMO9786841", "EVER GLOBE", "Porte-conteneurs", 198937, 190000));
                 String imo = "IMO9786841";
                 port.Dechargement(imo);
                 Console.WriteLine("Navire " + imo + " déchargé");

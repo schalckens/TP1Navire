@@ -82,45 +82,40 @@ namespace GestionNavire.ClassesMetiers
         public void Dechargement(string imo)
         {
             Navire navire = GetNavire(imo);
-            try
+
+            if (navire != null && navire.LibelleFret == "Porte-conteneurs")
             {
-                if (navire != null && navire.LibelleFret == "Porte-conteneurs")
+                int i = 0;
+                while (i < this.stockages.Count && !navire.EstDecharge())
                 {
-                    int i = 0;
-                    while (i < this.stockages.Count && !navire.EstDecharge())
+                    if (this.stockages[i].CapaciteDispo > 0 && this.stockages[i].CapaciteDispo > navire.QteFret)
                     {
-                        if (this.stockages[i].CapaciteDispo > 0 && this.stockages[i].CapaciteDispo > navire.QteFret)
-                        {
-                            this.stockages[i].Stocker(navire.QteFret);
-                            navire.Decharger(navire.QteFret);
+                        this.stockages[i].Stocker(navire.QteFret);
+                        navire.Decharger(navire.QteFret);
 
-                        }
-                        else
-                        {
-                            navire.Decharger(this.stockages[i].CapaciteDispo);
-                            this.stockages[i].Stocker(this.stockages[i].CapaciteDispo);
-
-                        }
-                        i++;
-                    }
-                    if (i < this.stockages.Count)
-                    {
-                        Console.WriteLine("Le navire à bien été déchargé");
                     }
                     else
                     {
-                        throw new GestionPortException("Le navire " + navire.Imo + " n'a pas pu être entièrement déchargé, il reste " + navire.QteFret + " tonnes.");
+                        navire.Decharger(this.stockages[i].CapaciteDispo);
+                        this.stockages[i].Stocker(this.stockages[i].CapaciteDispo);
+
                     }
+                    i++;
+                }
+                if (i < this.stockages.Count)
+                {
+                    Console.WriteLine("Le navire à bien été déchargé");
+                }
+                else
+                {
+                    throw new GestionPortException("Le navire " + navire.Imo + " n'a pas pu être entièrement déchargé, il reste " + navire.QteFret + " tonnes.");
                 }
             }
-            catch (NullReferenceException)
+            else
             {
+                throw new GestionPortException("Impossible de décharger le navire " + imo + " il n'est pas dans le port ou n'est pas un porte-conteneurs.");
 
-                throw;
             }
-            
-
-
         }
 
         public int NbNavireMax { get => nbNavireMax; }
