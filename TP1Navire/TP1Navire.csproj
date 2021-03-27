@@ -9,8 +9,4 @@
     <None Remove="ClassesMetiers\Port.cs~RF252f2ffc.TMP" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
 </Project>

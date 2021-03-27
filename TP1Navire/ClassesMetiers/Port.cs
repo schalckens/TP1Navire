@@ -7,7 +7,7 @@ namespace NavireHeritage.ClassesMetiers
     class Port
     {
         private string nom;
-        private int nbNavireMax = 5;
+        private string latitude;
         private Dictionary<String, Navire> navires = new Dictionary<String, Navire>();
         private List<Stockage> stockages = new List<Stockage>();
 
