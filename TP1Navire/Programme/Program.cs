@@ -1,8 +1,8 @@
 ﻿using System;
-using GestionNavire.ClassesMetiers;
+using NavireHeritage.ClassesMetiers;
 using GestionNavire.Exceptions;
 
-namespace GestionNavire.Application
+namespace NavireHeritage
 {
     class Program
     {

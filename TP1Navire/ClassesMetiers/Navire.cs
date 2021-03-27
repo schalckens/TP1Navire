@@ -2,7 +2,7 @@
 using System;
 using GestionNavire.Exceptions;
 
-namespace GestionNavire.ClassesMetiers
+namespace NavireHeritage.ClassesMetiers
 {
     class Navire
     {
