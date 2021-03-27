@@ -1,97 +1,40 @@
-﻿using System.Text.RegularExpressions;
-using System;
-using GestionNavire.Exceptions;
-
-namespace NavireHeritage.ClassesMetiers
+﻿namespace NavireHeritage.ClassesMetiers
 {
-    class Navire
+    abstract class Navire
     {
-        private string imo;
-        private string nom;
-        private string libelleFret;
-        private int qteFretMaxi;
-        private int qteFret;
+        private static string imo;
+        private static string nom;
+        private static string latitude;
+        private static string longitude;
+        private static int tonnageDT;
+        private static int tonnageDWT;
+        private static int tonnageActuel;
 
-        public Navire(string imo, string nom, string libelleFret, int qteFretMaxi, int qteFret)
+        public Navire(string imo,string pnom,string platitude,string plongitude,int ptonnageDT,int ptonnageDWT,int ptonnageActuel)
         {
-            if (IsIMOValide(imo)) 
-            {
-                this.imo = imo;
-            }
-            else
-            {
-                throw new GestionPortException("Erreur : IMO non valide.");
-            }
-            this.nom = nom;
-            this.libelleFret = libelleFret;
-            this.QteFretMaxi = qteFretMaxi;
+            Imo = imo;
+            nom = pnom;
+            Latitude = platitude;
+            Longitude = plongitude;
+            tonnageDT = ptonnageDT;
+            tonnageDWT = ptonnageDWT;
+            TonnageActuel = ptonnageActuel;
 
-            if (qteFret >= 0 && qteFret <= this.QteFretMaxi)
-            {
-                this.qteFret = qteFret;
-            }
-            else
-            {
-                throw new GestionPortException("Valeur incohérente pour la quantité de fret stockée dans le navire");
-            }
-        }
-        public Navire(string imo, string nom):this(imo,nom,"Indéfini",0,0){}
-
-        public override string ToString()
-        {
-            return "Identification"+ " : " + Imo.ToString() + "\nNom" + " : " + Nom.ToString() + "\nType de Frêt" + " : " + LibelleFret.ToString() + "\nQuantité de Frêt" + " : " + QteFretMaxi.ToString() + "\n-----------------------------------------------";
         }
 
-        public bool IsIMOValide(string imo) 
-        {
-            string prototypeIMO = "^IMO[0-9]{7}$";
-            Match match = Regex.Match(imo, prototypeIMO);
-            return match.Success;
-        }
-
-        public void Decharger(int quantite)
-        {
-            if(quantite >= 0 && quantite <= this.QteFret)
-            {
-                this.qteFret -= quantite;
-            }
-            else
-            {
-                if(quantite < 0)
-                {
-                    throw new GestionPortException("La quantité à décharger ne peut être négative");
-                }
-                else
-                {
-                    throw new GestionPortException("Impossible de décharger plus que la quantité de fret dans le navire");
-                }
-            }
-        }
-        public bool EstDecharge()
-        {
-            return this.qteFret == 0;
-        }
-
-        public string Imo { get => imo;}
-        
-        public int QteFretMaxi 
+        public string Imo 
         { 
-            get => qteFretMaxi; 
-            set 
+            get => imo; 
+            private set 
             { 
-                if (value >= 0 )
-                {
-                    this.qteFretMaxi = value;
-                }
-                else
-                {
-                    throw new GestionPortException("Erreur, quantité de fret non valide");
-                }
+
             } 
         }
-
-        public int QteFret { get => qteFret;}
-        public string Nom { get => nom; set => nom = value; }
-        public string LibelleFret { get => libelleFret; }
+        public static string Nom { get => nom;}
+        public static string Latitude { get => latitude; set => latitude = value; }
+        public static string Longitude { get => longitude; set => longitude = value; }
+        public static int TonnageDT { get => tonnageDT}
+        public static int TonnageDWT { get => tonnageDWT;}
+        public static int TonnageActuel { get => tonnageActuel; set => tonnageActuel = value; }
     }
 }

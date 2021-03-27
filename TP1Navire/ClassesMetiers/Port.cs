@@ -8,116 +8,74 @@ namespace NavireHeritage.ClassesMetiers
     {
         private string nom;
         private string latitude;
-        private Dictionary<String, Navire> navires = new Dictionary<String, Navire>();
-        private List<Stockage> stockages = new List<Stockage>();
+        private string longitude;
+        private int nbPortique;
+        private int nbQuaisTanker;
+        private int nbQuaisSuperTanker;
+        private int nbQuaisPassager;
+        private Dictionary<string, Navire> navireAttendus;
+        private Dictionary<string, Navire> navireArrives;
+        private Dictionary<string, Navire> navirePartis;
+        private Dictionary<string, Navire> navireEnAttentes;
 
-        /// <summary>
-        /// Constructeur de la classe Port.
-        /// </summary>
-        /// <param name="nom"> nom du port </param>
-        public Port(string nom)
+        public Port(string nom, string latitude, string longitude, int nbPortique, int nbQuaisTanker, int nbQuaisSuperTanker, int nbQuaisPassager)
         {
             this.nom = nom;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.nbPortique = nbPortique;
+            this.nbQuaisTanker = nbQuaisTanker;
+            this.nbQuaisSuperTanker = nbQuaisSuperTanker;
+            this.nbQuaisPassager = nbQuaisPassager;
         }
 
-
-        /// <summary>
-        /// Méthode permettant d'enregistrer l'arrivee d'un navire de la classe Navire
-        /// dans l'attribut navires d'un objet port de la classe Port.
-        /// </summary>
-        /// <param name="navire"> objet navire de la classe Navire </param>
-        public void EnregistrerArrivee(Navire navire)
+        public void enregistrerArriveePrevue(Navire navire)
         {
-            try
-            {
-                if (this.navires.Count < this.NbNavireMax)
-                {
-                    this.navires.Add(navire.Imo, navire);
-                }
-                else
-                {
-                    throw new GestionPortException("Ajout imposible, le port est complet");
-                }
-
-            }
-            catch (ArgumentException)
-            {
-
-                throw new GestionPortException("Le navire " + navire.Imo + " est déjà enregistré");
-            }
-
+            this.navireAttendus.Add(navire.Imo, navire);
         }
-
-        public void EnregistrerDepart(string imo)
+        public void enregistrerArrivee(Navire navire)
         {
-
-            if (this.navires.ContainsKey(imo))
-            {
-                this.navires.Remove(imo);
-            }
-            else
-            {
-                throw new GestionPortException("Impossible d'enregister le navire " + imo + " , il n'est pas dans le port");
-            }
+            this.navireArrives.Add(navire.Imo, navire);
         }
-
-        public void AjoutStockage(Stockage stockage)
+        private void AjoutNavireEnAttente(Navire navire)
         {
-            this.stockages.Add(stockage);
+            this.navireEnAttentes.Add(navire.Imo, navire);
         }
-
-        public Navire GetNavire(string imo)
+        public Boolean EstAttendu(String imo)
         {
-            if (this.navires.TryGetValue(imo, out Navire navire))
-            {
-                return navire;
-            }
-            else
-            {
-                return null;
-            }
+            return this.navireAttendus.ContainsKey(imo);
         }
-
-
-        public void Dechargement(string imo)
+        public Boolean EstPresent(String imo)
         {
-
-            Navire navire = GetNavire(imo);
-            if (navire != null && navire.LibelleFret == "Porte-conteneurs")
-            {
-                int i = 0;
-                while (i < this.stockages.Count && !navire.EstDecharge())
-                {
-                    if (this.stockages[i].CapaciteDispo >= 0 && this.stockages[i].CapaciteDispo > navire.QteFret)
-                    {
-                        navire.Decharger(navire.QteFret);
-                        this.stockages[i].Stocker(navire.QteFret);
-                    }
-                    else
-                    {
-                        navire.Decharger(this.stockages[i].CapaciteDispo);
-                        this.stockages[i].Stocker(this.stockages[i].CapaciteDispo);
-
-                    }
-                    i++;
-                }
-                if (navire.EstDecharge())
-                {
-                    Console.WriteLine("Le navire à bien été déchargé");
-                }
-                else
-                {
-                    throw new GestionPortException("Le navire " + navire.Imo + " n'a pas pu être entièrement déchargé, il reste " + navire.QteFret + " tonnes.");
-                }
-            }
-            else
-            {
-                throw new GestionPortException("Impossible de décharger le navire " + imo + " il n'est pas dans le port ou n'est pas un porte-conteneurs.");
-
-            }
+            return this.navireArrives.ContainsKey(imo);
         }
+        public Boolean EstEnAttente(String imo)
+        {
+            return this.navireEnAttentes.ContainsKey(imo);
+        }
+        public void Dechargement(string imo,int qteDecharge) { }
+        public void Chargement(string imo,int qteCharge) { }
+        public void GetUnEnAttente(string a) { }
+        public void GetUnArrive(string a) { }
+        public void GetUnParti(string a) { }
+        public int GetNbTankerArrives() { return 0; }
+        public int GetNbSuperTankerArrives() { return 0; }
+        public int GetNbCargoArrives() { return 0; }
+        private void AjoutNavireEnAttente(Navire navire) { }
 
-        public int NbNavireMax { get => nbNavireMax; }
-        internal Dictionary<string, Navire> Navires { get => navires; }
+        public string Nom { get => nom;}
+        public string Latitude { get => latitude;}
+        public string Longitude { get => longitude;}
+        public int NbPortique { get => nbPortique; set => nbPortique = value; }
+        public int NbQuaisTanker { get => nbQuaisTanker; set => nbQuaisTanker = value; }
+        public int NbQuaisSuperTanker { get => nbQuaisSuperTanker; set => nbQuaisSuperTanker = value; }
+        public int NbQuaisPassager { get => nbQuaisPassager; set => nbQuaisPassager = value; }
+        internal Dictionary<string, Navire> NavireAttendus { get => navireAttendus;}
+        internal Dictionary<string, Navire> NavireArrives { get => navireArrives;}
+        internal Dictionary<string, Navire> NavirePartis { get => navirePartis;}
+        internal Dictionary<string, Navire> NavireEnAttentes { get => navireEnAttentes; }
+
+
+
     }
 }

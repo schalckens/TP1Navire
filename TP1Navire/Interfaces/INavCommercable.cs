@@ -6,5 +6,7 @@ namespace Station.Interfaces
 {
     class INavCommercable
     {
+        public void Decharger(int a) { }
+        public void Charger(int a) { }
     }
 }
