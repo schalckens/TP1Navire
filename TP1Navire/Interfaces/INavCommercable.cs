@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Station.Interfaces
 {
-    class INavCommercable
+    interface INavCommercable
     {
-        public void Decharger(int a) { }
-        public void Charger(int a) { }
+        public void Decharger(int qteDecharge) { }
+        public void Charger(int qteCharge) { }
     }
 }

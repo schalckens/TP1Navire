@@ -32,12 +32,12 @@ namespace NavireHeritage.ClassesMetiers
             }
             else
             {
-                throw new GestionPortException("Le nombre de passager et supérieur à la capacité maximale, tous les passagers n'embarque pas.");
+                throw new GestionPortException("Le nombre de passager est supérieur à la capacité maximale, tous les passagers n'embarque pas.");
             }
         }
         public Dictionary<string,Passager> Debarquer(Dictionary<string, Passager> passagers2)
         {
-            Dictionary<string, Passager> passagers3 = new Dictionary<string, Passager>;
+            Dictionary<string, Passager> passagers3 = new Dictionary<string, Passager>();
             foreach(Passager passager in passagers2.Values)
             {
                 if (this.passagers.ContainsKey(passager.NumPasseport))

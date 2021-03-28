@@ -17,6 +17,7 @@ namespace NavireHeritage.ClassesMetiers
         private Dictionary<string, Navire> navireArrives;
         private Dictionary<string, Navire> navirePartis;
         private Dictionary<string, Navire> navireEnAttentes;
+        private List<Stockage> stockages = new List<Stockage>();
 
         public Port(string nom, string latitude, string longitude, int nbPortique, int nbQuaisTanker, int nbQuaisSuperTanker, int nbQuaisPassager)
         {
@@ -55,13 +56,12 @@ namespace NavireHeritage.ClassesMetiers
         }
         public void Dechargement(string imo,int qteDecharge) { }
         public void Chargement(string imo,int qteCharge) { }
-        public void GetUnEnAttente(string a) { }
-        public void GetUnArrive(string a) { }
-        public void GetUnParti(string a) { }
+        public void GetUnEnAttente(string imo) { }
+        public void GetUnArrive(string imo) { }
+        public void GetUnParti(string imo) { }
         public int GetNbTankerArrives() { return 0; }
         public int GetNbSuperTankerArrives() { return 0; }
         public int GetNbCargoArrives() { return 0; }
-        private void AjoutNavireEnAttente(Navire navire) { }
 
         public string Nom { get => nom;}
         public string Latitude { get => latitude;}

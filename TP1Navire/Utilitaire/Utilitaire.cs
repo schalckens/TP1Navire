@@ -7,7 +7,7 @@ namespace UtilitaireNavire
 {
     class Utilitaire
     {
-        public Dictionary<int,int> GetItineraireDechargeNavire(Navire navire, int a) { }
-        public Dictionary<int, int> GetItineraireChargeNavire(Navire navire, int a) { }
+        public Dictionary<int,int> GetItineraireDechargeNavire(Navire navire, int qteDecharge) { }
+        public Dictionary<int, int> GetItineraireChargeNavire(Navire navire, int qteCharge) { }
     }
 }
