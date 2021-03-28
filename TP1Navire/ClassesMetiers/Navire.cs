@@ -5,19 +5,49 @@ namespace NavireHeritage.ClassesMetiers
 {
     abstract class Navire
     {
-        private static string imo;
-        private static string nom;
-        private static string latitude;
-        private static string longitude;
-        private static int tonnageDT;
-        private static int tonnageDWT;
-        private static int tonnageActuel;
-
+        /// <summary>
+        /// Numéro IMO du bateau sous la forme IMO9999999
+        /// </summary>
+        protected static string imo;
+        /// <summary>
+        /// Nom du navire
+        /// </summary>
+        protected static string nom;
+        /// <summary>
+        /// Position mise à jour à intervalles réguliers par un programme externe
+        /// </summary>
+        protected static string latitude;
+        /// <summary>
+        /// Position mise à jour à intervalles réguliers par un programme externe
+        /// </summary>
+        protected static string longitude;
+        /// <summary>
+        /// Tonnage du bateau
+        /// </summary>
+        protected static int tonnageDT;
+        /// <summary>
+        /// Hargement maximal que peut embarquer un navire. Il comprend le personnel, les consommables (nourriture, fluides,...) et la cargaison.
+        /// </summary>
+        protected static int tonnageDWT;
+        /// <summary>
+        /// Partie du tonnage du bateau actuellement utilisée. Il est exprimé en tonnaux
+        /// </summary>
+        protected static int tonnageActuel;
+        /// <summary>
+        /// Constructeur permettant d'initialiser respectivement les attributs imo,latitude,longitude,nom,tonnageActuel,tonnageDT,tonnageDWT
+        /// </summary>
+        /// <param name="imo"> Matricule du navire</param>
+        /// <param name="pnom"> Nom du navire </param>
+        /// <param name="platitude">Position du navire(latitude)</param>
+        /// <param name="plongitude">Position du navire(latitude)</param>
+        /// <param name="ptonnageDT">Tonnage du navire</param>
+        /// <param name="ptonnageDWT">Hargement maximal du navire </param>
+        /// <param name="ptonnageActuel"> partie du tonnage utilisée du navire</param>
         public Navire(string imo,string pnom,string platitude,string plongitude,int ptonnageDT,int ptonnageDWT,int ptonnageActuel)
         {
             if (IsIMOValide(imo))
             {
-                this.imo = imo;
+                this.Imo = imo;
             }
             else
             {
@@ -32,11 +62,11 @@ namespace NavireHeritage.ClassesMetiers
 
         }
 
-        public override string ToString()
-        {
-            return "\n Identification : {0} \n Nom : {1} \n Coordonnées GPS : {2}N/ {3}", imo ,Nom,Latitude,Longitude;
-        }
-
+        /// <summary>
+        /// Regex pour  que l'IMO soit soit valide
+        /// </summary>
+        /// <param name="imo"> Matricule du navire à tester</param>
+        /// <returns> True si l'IMo du navire est valide </returns>
         public bool IsIMOValide(string imo)
         {
             string prototypeIMO = "^IMO[0-9]{7}$";
@@ -44,11 +74,11 @@ namespace NavireHeritage.ClassesMetiers
             return match.Success;
         }
 
-        public string Imo { get => imo;}
+        public string Imo { get => imo; private set { imo = value; } }
         public static string Nom { get => nom;}
         public static string Latitude { get => latitude; set => latitude = value; }
         public static string Longitude { get => longitude; set => longitude = value; }
-        public static int TonnageDT { get => tonnageDT}
+        public static int TonnageDT { get => tonnageDT; }
         public static int TonnageDWT { get => tonnageDWT;}
         public static int TonnageActuel { get => tonnageActuel; set => tonnageActuel = value; }
     }
