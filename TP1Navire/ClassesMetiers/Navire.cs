@@ -75,11 +75,11 @@ namespace NavireHeritage.ClassesMetiers
         }
 
         public string Imo { get => imo; private set { imo = value; } }
-        public static string Nom { get => nom;}
-        public static string Latitude { get => latitude; set => latitude = value; }
-        public static string Longitude { get => longitude; set => longitude = value; }
-        public static int TonnageDT { get => tonnageDT; }
-        public static int TonnageDWT { get => tonnageDWT;}
-        public static int TonnageActuel { get => tonnageActuel; set => tonnageActuel = value; }
+        public string Nom { get => nom;}
+        public string Latitude { get => latitude; set => latitude = value; }
+        public string Longitude { get => longitude; set => longitude = value; }
+        public int TonnageDT { get => tonnageDT; }
+        public int TonnageDWT { get => tonnageDWT;}
+        public int TonnageActuel { get => tonnageActuel; set => tonnageActuel = value; }
     }
 }

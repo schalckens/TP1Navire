@@ -18,7 +18,7 @@ namespace NavireHeritage.ClassesMetiers
         /// <summary>
         /// Dictionnaire d'objets de la classe Passager identifiés par leur numéro de passeport. Représente les personnes croisiéristes à bord du bateau
         /// </summary>
-        private Dictionary<string, Passager> passagers;
+        private List<Passager> passagers;
         /// <summary>
         /// Constructeur permettant de valoriser les attributs de la classe mère, le type de navire de croisère et le nombre de passagers maximum
         /// </summary>
@@ -35,6 +35,7 @@ namespace NavireHeritage.ClassesMetiers
         {
             this.typeNavireCroisiere = typeNavireCroisiere;
             this.nbPassagersMaxi = nbPassagersMaxi;
+            this.passagers = new List<Passager>();
         }
         /// <summary>
         /// Constructeur surchage permettant en plus de charger une liste de passagers
@@ -49,7 +50,7 @@ namespace NavireHeritage.ClassesMetiers
         /// <param name="typeNavireCroisiere"></param>
         /// <param name="nbPassagersMaxi"></param>
         /// <param name="passagers"></param>
-        public Croisiere(string imo, string pnom, string platitude, string plongitude, int ptonnageDT, int ptonnageDWT, int ptonnageActuel, string typeNavireCroisiere, int nbPassagersMaxi,Dictionary<string,Passager> passagers) : base(imo, pnom, platitude, plongitude, ptonnageDT, ptonnageDWT, ptonnageActuel)
+        public Croisiere(string imo, string pnom, string platitude, string plongitude, int ptonnageDT, int ptonnageDWT, int ptonnageActuel, string typeNavireCroisiere, int nbPassagersMaxi,List<Passager> passagers) : base(imo, pnom, platitude, plongitude, ptonnageDT, ptonnageDWT, ptonnageActuel)
         {
             this.typeNavireCroisiere = typeNavireCroisiere;
             this.nbPassagersMaxi = nbPassagersMaxi;
@@ -59,7 +60,7 @@ namespace NavireHeritage.ClassesMetiers
         /// Méthode qui met à jour la liste des passagers du bateau. Les passagers passés en paramètres doivent être ajoutés de la liste des passagers du navire. Une exception sera générée si le nombre de passagers dépasse le nombre de passagers maximum du navire. Aucun passager ne sera alors ajouté.
         /// </summary>
         /// <param name="passagers2"></param>
-        public void Embarquer(Dictionary<string,Passager> passagers2)
+        public void Embarquer(List<Passager> passagers2)
         {
             if(passagers2.Count < (nbPassagersMaxi - this.passagers.Count)) 
             {
@@ -75,18 +76,18 @@ namespace NavireHeritage.ClassesMetiers
         /// </summary>
         /// <param name="passagers2"></param>
         /// <returns></returns>
-        public Dictionary<string,Passager> Debarquer(Dictionary<string, Passager> passagers2)
+        public List<Passager> Debarquer(List<Passager> passagers2)
         {
-            Dictionary<string, Passager> passagers3 = new Dictionary<string, Passager>();
-            foreach(Passager passager in passagers2.Values)
+            List<Passager> passagers3 = new List<Passager>();
+            foreach(Passager passager in passagers2)
             {
-                if (this.passagers.ContainsKey(passager.NumPasseport))
+                if (this.passagers.Contains(passager))
                 {
-                    this.passagers.Remove(passager.NumPasseport);
+                    this.passagers.Remove(passager);
                 }
                 else
                 {
-                    passagers3.Add(passager.NumPasseport, passager);
+                    passagers3.Add(passager);
                 }
             }
 

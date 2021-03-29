@@ -339,17 +339,50 @@ namespace NavireHeritage.ClassesMetiers
         /// retourne le nombre de tankers (tonnageGT <= 130000) présents dans le port
         /// </summary>
         /// <returns></returns>
-        public int GetNbTankerArrives() { return 0; }
+        public int GetNbTankerArrives()
+        {
+            int cpt = 0;
+            foreach (Navire navire in navireArrives.Values)
+            {
+                if (navire is Tanker tanker && tanker.TonnageDT <= 130000)
+                {
+                    cpt++;
+                }
+            }
+            return cpt;
+        }
         /// <summary>
         /// Retourne le nombre de super tankers (tonnageGT>130000) présents dans le port
         /// </summary>
         /// <returns></returns>
-        public int GetNbSuperTankerArrives() { return 0; }
+        public int GetNbSuperTankerArrives() 
+        {
+            int cpt = 0;
+            foreach (Navire navire in navireArrives.Values)
+            {
+                if (navire is Tanker tanker && tanker.TonnageDT > 130000)
+                {
+                    cpt++;
+                }
+            }
+            return cpt;
+        }
         /// <summary>
         /// retourne le nombre de cargos présents dans le port
         /// </summary>
         /// <returns></returns>
-        public int GetNbCargoArrives() { return 0; }
+        public int GetNbCargoArrives() 
+        {
+            int cpt = 0;
+            foreach (Navire navire in navireArrives.Values)
+            {
+                if (navire is Cargo cargo)
+                {
+                    cpt++;
+                }
+            }
+            return cpt;
+        }
         public Navire GetNavire(string imo)
         {
             if (this.navireArrives.TryGetValue(imo, out Navire navire))
