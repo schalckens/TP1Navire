@@ -1,6 +1,7 @@
 ﻿using GestionNavire.Exceptions;
 using Station.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NavireHeritage.ClassesMetiers
 {
@@ -62,10 +63,7 @@ namespace NavireHeritage.ClassesMetiers
         {
             if(passagers2.Count < (nbPassagersMaxi - this.passagers.Count)) 
             {
-                foreach(Passager passager in passagers2.Values)
-                {
-                    this.passagers.Add(passager.NumPasseport,passager);
-                }
+                this.passagers.Union(passagers2);
             }
             else
             {

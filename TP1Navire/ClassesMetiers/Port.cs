@@ -52,6 +52,10 @@ namespace NavireHeritage.ClassesMetiers
         /// </summary>
         private Dictionary<string, Navire> navireEnAttentes;
         /// <summary>
+        /// Liste des stockages
+        /// </summary>
+        private List<Stockage> stockages = new List<Stockage>();
+        /// <summary>
         /// Constructeur permettant de valoriser les attributs de la classe.
         /// </summary>
         /// <param name="nom"></param>
@@ -186,6 +190,8 @@ namespace NavireHeritage.ClassesMetiers
             if (EstPresent(imo))
             {
                 this.navireArrives.Remove(imo);
+                navirePartis.Add(GetNavire(imo).Imo, GetNavire(imo));
+
             }
             else
             {
@@ -229,7 +235,7 @@ namespace NavireHeritage.ClassesMetiers
         }
         public Boolean EstParti(string imo)
         {
-
+            return this.navirePartis.ContainsKey(imo);
         }
         /// <summary>
         /// Déhargement du navire dont l'id est passé en paramètre de la quantité passée en paramètre
@@ -288,17 +294,47 @@ namespace NavireHeritage.ClassesMetiers
         /// Retourne l'objet dont l'id a été passé en paramètre ou une exception de type Exception
         /// </summary>
         /// <param name="imo"></param>
-        public void GetUnEnAttente(string imo) { }
+        public Navire GetUnEnAttente(string imo) 
+        {
+            if (this.navireEnAttentes.TryGetValue(imo, out Navire navire))
+            {
+                return navire;
+            }
+            else
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une exception de type Exception
         /// </summary>
         /// <param name="imo"></param>
-        public void GetUnArrive(string imo) { }
+        public Navire GetUnArrive(string imo) 
+        {
+            if (this.navireArrives.TryGetValue(imo, out Navire navire))
+            {
+                return navire;
+            }
+            else
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une exception de type Exception
         /// </summary>
         /// <param name="imo"></param>
-        public void GetUnParti(string imo) { }
+        public Navire GetUnParti(string imo) 
+        {
+            if (!this.navireEnAttentes.TryGetValue(imo, out Navire navire))
+            {
+                return navire;
+            }
+            else
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// retourne le nombre de tankers (tonnageGT <= 130000) présents dans le port
         /// </summary>
