@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavireHeritage.ClassesMetiers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,60 +17,60 @@ namespace Station.Interfaces
         /// susceptibles d'arriver dans la station (port, aéroport,…)
         /// </summary>
         /// <param name="obj"></param>
-        public void EnregistrerArriveePrevue(Object obj);
+        public void EnregistrerArriveePrevue(Navire navire);
         /// <summary>
         /// Méthode qui enregistre l'arrivée réelle de l'objet.
         /// </summary>
         /// <param name="a"></param>
-        public void EnregistrerArrivee(string a);
+        public void EnregistrerArrivee(string imo);
         /// <summary>
         /// Méthode qui enregistre le départ d'un objet présent dans la
         /// station.
         /// </summary>
         /// <param name="a"></param>
-        public void EnregistrerDepart(string a);
+        public void EnregistrerDepart(string imo);
         /// <summary>
         /// Retourne vrai si l'objet dont l'id est passé en paramètre fait
         /// partie des objets attendus dans la station
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public Boolean EstAttendu(string a);
+        public Boolean EstAttendu(string imo);
         /// <summary>
         /// Retourne vrai si l'objet dont l'id est passé en paramètre fait
         /// partie des objets présents dans la station
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public Boolean EstPresent(string a);
+        public Boolean EstPresent(string imo);
         /// <summary>
         /// Retourne vrai si l'objet dont l'id est passé en paramètre est
         /// parti de la station depuis peu de temps
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public Boolean EstParti(string a);
+        public Boolean EstParti(string imo);
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une
         /// exception de type Exception
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        protected object GetUnAttendu(string a);
+        protected object GetUnAttendu(string imo);
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une
         /// exception de type Exception
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        protected object GetUnArrive(string a);
+        protected object GetUnArrive(string imo);
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une
         /// exception de type Exception
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        protected object GetUnParti(string a);
+        protected object GetUnParti(string imo);
 
     }
 }

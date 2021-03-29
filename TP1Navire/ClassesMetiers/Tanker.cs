@@ -32,7 +32,7 @@ namespace NavireHeritage.ClassesMetiers
         /// <param name="tonnageActuel"></param>
         public void Charger(int tonnageActuel)
         {
-            TonnageActuel -= tonnageActuel;
+            TonnageActuel += tonnageActuel;
         }
         /// <summary>
         /// Méthode qui met à jour le tonnage actuel du bateau avec la valeur passée en paramètre. La quantité passée en paramètre est ajoutée à la quantité actuelle
@@ -40,7 +40,7 @@ namespace NavireHeritage.ClassesMetiers
         /// <param name="tonnageActuel"></param>
         public void Decharger(int tonnageActuel)
         {
-            TonnageActuel += tonnageActuel;
+            TonnageActuel -= tonnageActuel;
         }
 
         public string TypeFluide { get => typeFluide;}

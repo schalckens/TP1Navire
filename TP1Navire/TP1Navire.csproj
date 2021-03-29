@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <None Remove="ClassesMetiers\Port.cs~RF252f2ffc.TMP" />
+    <None Remove="ClassesMetiers\Tanker.cs~RF103913ae.TMP" />
   </ItemGroup>
 
 </Project>
