@@ -1,10 +1,11 @@
 ﻿using GestionNavire.Exceptions;
+using Station.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace NavireHeritage.ClassesMetiers
 {
-    class Port
+    class Port : IStationnable
     {
         /// <summary>
         /// Nom du port

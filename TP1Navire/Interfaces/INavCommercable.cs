@@ -10,11 +10,11 @@ namespace Station.Interfaces
         /// Méthode qui met à jour le tonnage actuel du navire avec la valeur passée en paramètre. La quantité passée en paramètre est enlevée à la quantité actuelle.
         /// </summary>
         /// <param name="qteDecharge"></param>
-        public void Decharger(int qteDecharge) { }
+        public void Decharger(int qteDecharge);
         /// <summary>
         ///Méthode qui met à jour le tonnage actuel du bateau avec la valeur passée en paramètre. La quantité passée en paramètre est ajoutée à la quantité actuelle.
         /// </summary>
         /// <param name="qteCharge"></param>
-        public void Charger(int qteCharge) { }
+        public void Charger(int qteCharge);
     }
 }

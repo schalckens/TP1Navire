@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Station.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NavireHeritage.ClassesMetiers
 {
-    class Tanker : Navire
+    class Tanker : Navire,INavCommercable
     {
         /// <summary>
         /// Gaz liquide, pétrole, huile ...

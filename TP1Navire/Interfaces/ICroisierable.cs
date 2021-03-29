@@ -19,10 +19,7 @@ namespace Station.Interfaces
         /// Aucun objet ne sera alors ajouté.
         /// </summary>
         /// <param name="objects"></param>
-        public void Embarquer( List<Object> objects ) 
-        {
-            
-        }
+        public void Embarquer(List<Object> objects);
         /// <summary>
         /// Méthode qui met à jour la liste d'objets présents dans un bateau(passagers ou autres). Les objets passés en
         /// paramètres doivent être retirés de la liste des objets présents
@@ -32,10 +29,7 @@ namespace Station.Interfaces
         /// </summary>
         /// <param name="objects"></param>
         /// <returns></returns>
-        public List<Object> Debarquer( List<Object> objects) 
-        {
-
-        }
+        public List<Object> Debarquer(List<Object> objects);
 
     }
 }

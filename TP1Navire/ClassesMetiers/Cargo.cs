@@ -1,6 +1,8 @@
-﻿namespace NavireHeritage.ClassesMetiers
+﻿using Station.Interfaces;
+
+namespace NavireHeritage.ClassesMetiers
 {
-    class Cargo : Navire
+    class Cargo : Navire,INavCommercable
     {
         /// <summary>
         /// Chaine représentant le type de cargaison du bateau : denrées, périssables, matériel ...

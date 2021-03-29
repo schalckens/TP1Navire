@@ -1,9 +1,10 @@
 ﻿using GestionNavire.Exceptions;
+using Station.Interfaces;
 using System.Collections.Generic;
 
 namespace NavireHeritage.ClassesMetiers
 {
-    class Croisiere : Navire
+    class Croisiere : Navire,ICroisierable
     {
         /// <summary>
         /// V : voilier ; M : moteur
