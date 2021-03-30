@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace NavireHeritage.ClassesMetiers
 {
-    abstract class Navire
+    public abstract class Navire
     {
         /// <summary>
         /// Numéro IMO du bateau sous la forme IMO9999999

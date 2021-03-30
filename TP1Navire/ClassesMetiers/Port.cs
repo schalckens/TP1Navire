@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace NavireHeritage.ClassesMetiers
 {
-    class Port : Istationnable
+    public class Port : Istationnable
     {
         /// <summary>
         /// Nom du port
@@ -74,17 +74,26 @@ namespace NavireHeritage.ClassesMetiers
             this.nbQuaisTanker = nbQuaisTanker;
             this.nbQuaisSuperTanker = nbQuaisSuperTanker;
             this.nbQuaisPassager = nbQuaisPassager;
+            this.navireArrives = new Dictionary<string, Navire>();
+            this.navireAttendus = new Dictionary<string, Navire>();
+            this.navireEnAttentes = new Dictionary<string, Navire>();
+            this.navirePartis = new Dictionary<string, Navire>();
+        }
+        public override string ToString()
+        {
+            return "--------------------------------- \n Port de "+this.Nom+"\n\t Coordonnées GPS : "+this.Latitude+" / " + this.Longitude + "\n\t Nb Portiques :" + this.nbPortique + "\n\t Nb Croisière :" + this.nbQuaisPassager + "\n\t Nb Tankers :" + this.nbQuaisTanker + "\n\t Nb Super Tankers :" + this.nbQuaisSuperTanker + "\n\t Nb Navires à quai :" + this.navireArrives.Count + "\n\t Nb Navires attendus :" + this.navireAttendus.Count + "\n\t Nb Navires à partis:" + this.navirePartis.Count + "\n\t Nb Navires en attente :" + this.navireEnAttentes.Count + "\n\n Nombre de cargos dans le port : " + this.GetNbCargoArrives() + "\n Nombre de tankers dans le port : " + this.GetNbTankerArrives() + " \n Nombre de super tankers dans le port : " + this.GetNbSuperTankerArrives() + "\n --------------------------------------";
         }
         /// <summary>
         /// Enregistrement de l'arrivée proche d'un navire
         /// </summary>
         /// <param name="navire"></param>
-        public void EnregistrerArriveePrevue(Object navire)
+        public void EnregistrerArriveePrevue(Navire navire)
         {
             
             if (!this.EstPresent(navire.Imo) && !this.EstEnAttente(navire.Imo) && !this.EstAttendu(navire.Imo))
             {
                 this.navireAttendus.Add(navire.Imo, navire);
+                Console.WriteLine("Le navire "+navire.Imo+" a bien été enregistrer");
             }
             else
             {
@@ -189,7 +198,7 @@ namespace NavireHeritage.ClassesMetiers
                 }
                 else
                 {
-                    PermutationDictionary(tanker, dictionaryDepart,navireEnAttentes;
+                    PermutationDictionary(tanker, dictionaryDepart,navireEnAttentes);
                 }
             }
 
@@ -207,10 +216,12 @@ namespace NavireHeritage.ClassesMetiers
                 if (this.GetNbCargoArrives() < nbPortique)
                 {
                     PermutationDictionary(navire, navireAttendus, navireArrives);
+                    Console.WriteLine("Le navire " + navire.Imo + " a bien été enregistrer");
                 }
                 else
                 {
                     PermutationDictionary(navire, navireAttendus, navireArrives);
+                    Console.WriteLine("Le navire " + navire.Imo + " a bien été enregistrer");
                 }
             }
             else
