@@ -1,4 +1,5 @@
 ﻿using GestionNavire.Exceptions;
+using NavireHeritage.ClassesMetiers;
 using System;
 using System.Collections.Generic;
 

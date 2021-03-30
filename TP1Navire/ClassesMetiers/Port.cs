@@ -24,15 +24,15 @@ namespace NavireHeritage.ClassesMetiers
         /// </summary>
         private int nbPortique;
         /// <summary>
-        /// Nombre de quais d'accueil pour navires passagers
+        /// Nombre de quais d'accueil pour les tankers de jusqu'à 130000 tonnes (GT)
         /// </summary>
         private int nbQuaisTanker;
         /// <summary>
-        /// Nombre de quais d'accueil pour les tankers de jusqu'à 130000 tonnes (GT)
+        /// Nombre de quais d'accueil pour les tankers de plus de 130000 tonnes(GT)
         /// </summary>
         private int nbQuaisSuperTanker;
         /// <summary>
-        /// Nombre de quais d'accueil pour les tankers de plus de 130000 tonnes(GT)
+        /// Nombre de quais d'accueil pour navires passagers
         /// </summary>
         private int nbQuaisPassager;
         /// <summary>

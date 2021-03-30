@@ -22,7 +22,7 @@ namespace NavireHeritage.ClassesMetiers
         /// </summary>
         protected static string longitude;
         /// <summary>
-        /// Tonnage du bateau
+        /// Tonnage du bateau (volume total m²)
         /// </summary>
         protected static int tonnageDT;
         /// <summary>
@@ -56,8 +56,7 @@ namespace NavireHeritage.ClassesMetiers
             nom = pnom;
             Latitude = platitude;
             Longitude = plongitude;
-            tonnageDT = ptonnageDT;
-            tonnageDWT = ptonnageDWT;
+            if (ptonnageDT > 0 && ptonnageDWT > 0) { tonnageDT = ptonnageDT; tonnageDWT = ptonnageDWT; }
             TonnageActuel = ptonnageActuel;
 
         }
@@ -80,6 +79,27 @@ namespace NavireHeritage.ClassesMetiers
         public string Longitude { get => longitude; set => longitude = value; }
         public int TonnageDT { get => tonnageDT; }
         public int TonnageDWT { get => tonnageDWT;}
-        public int TonnageActuel { get => tonnageActuel; set => tonnageActuel = value; }
+        public int TonnageActuel 
+        { 
+            get => tonnageActuel; 
+            protected set 
+            { 
+                if (value>0 && value <= tonnageDWT)
+                {
+                    tonnageActuel = value;
+                }
+                else
+                {
+                    if (value < 0)
+                    {
+                        throw new GestionPortException("Impossible d'avoir un tonnage négatif");
+                    }
+                    else
+                    {
+                        throw new GestionPortException("Impossible d'avoir un tonnage supérieur à la capacité macimal du navire");
+                    }
+                }
+            } 
+        }
     }
 }
