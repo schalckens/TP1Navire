@@ -9,7 +9,7 @@ namespace Station.Interfaces
     /// Cette interface va imposer les méthodes nécessaires à la gestion de toute infrastructure gérant des objets de passage.Ici il s'agit de Port qui gère les arrivées et départs de navires, mais il
     /// pourrait s'agir de trains ou d'avion.
     /// </summary>
-    interface IStationnable
+    interface Istationnable
     {
 
         /// <summary>
@@ -56,21 +56,21 @@ namespace Station.Interfaces
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        protected object GetUnAttendu(string imo);
+        public Navire GetUnAttendu(string imo);
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une
         /// exception de type Exception
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        protected object GetUnArrive(string imo);
+        public Navire GetUnArrive(string imo);
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une
         /// exception de type Exception
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        protected object GetUnParti(string imo);
+        public Navire GetUnParti(string imo);
 
     }
 }

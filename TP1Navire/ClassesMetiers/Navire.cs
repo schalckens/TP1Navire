@@ -72,7 +72,10 @@ namespace NavireHeritage.ClassesMetiers
             Match match = Regex.Match(imo, prototypeIMO);
             return match.Success;
         }
-
+        public override string ToString()
+        {
+            return "\n Numéro IMO : "+ Imo +"\n Nom : "+ Nom + "\n Coordonnées GPS : " + Latitude + "N / " + Longitude + "E \n TonnageDT : " + tonnageDT + "\n TonnageDWT : " + tonnageDWT + "\n Tonnage Actuel : " + TonnageActuel;
+        }
         public string Imo { get => imo; private set { imo = value; } }
         public string Nom { get => nom;}
         public string Latitude { get => latitude; set => latitude = value; }

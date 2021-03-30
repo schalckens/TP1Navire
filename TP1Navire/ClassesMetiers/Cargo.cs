@@ -23,6 +23,10 @@ namespace NavireHeritage.ClassesMetiers
         {
             this.typeFret = typeFret;
         }
+        public override string ToString()
+        {
+            return base.ToString() + "\n Type de Fret : " + typeFret;
+        }
         /// <summary>
         /// Méthode qui met à jour le tonnage actuel du bateau avec la valeur passée en paramètre. La quantité passée en paramètre est enlevée à la quantité actuelle
         /// </summary>

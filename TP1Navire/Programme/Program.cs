@@ -11,39 +11,7 @@ namespace NavireHeritage
         {
             try
             {
-                //port = new Port("Toulon");
-                ////Instanciations();
-                //try { TesterEnregistrerArrivee(); }
-                //catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
-                //try { TesterEnregistrerArriveeV2(); }
-                //catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
-                //try { TesterEnregistrerDepart(); }
-                //catch (GestionPortException ex) { Console.WriteLine(ex.Message); }
-                //TesterInstanciationsStockage();
 
-                port = new Port("Toulon");
-                InitPort();
-                ////Instanciations();
-                try { TesterEnregistrerArrivee(); }
-                catch (GestionPortException ex)
-                { Console.WriteLine(ex.Message); }
-
-                try { TesterEnregistrerArriveeV2(); }
-                catch (GestionPortException ex)
-                { Console.WriteLine(ex.Message); }
-
-                Console.WriteLine("-----------------------------------------");
-                Console.WriteLine("------- Début des déchargements -------");
-                Console.WriteLine("-----------------------------------------");
-                AjouterStockages();
-                TesterDechargerNavires();
-                Console.WriteLine("---------------------------------------");
-                Console.WriteLine("------- fin des déchargements -------");
-                Console.WriteLine("---------------------------------------");
-
-                try { TesterEnregistrerDepart(); }
-                catch (GestionPortException ex)
-                { Console.WriteLine(ex.Message); }
                 Console.WriteLine("--Fin normale du programme--");
             }
             catch (Exception ex)

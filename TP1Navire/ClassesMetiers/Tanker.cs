@@ -26,6 +26,10 @@ namespace NavireHeritage.ClassesMetiers
         {
             this.typeFluide = typeFluide;
         }
+        public override string ToString()
+        {
+            return base.ToString() + "\n Type de Fluide : " + typeFluide;
+        }
         /// <summary>
         /// Méthode qui met à jour le tonnage actuel du bateau avec la valeur passée en paramètre. La quantité passée en paramètre est enlevée à la quantité actuelle
         /// </summary>

@@ -60,23 +60,35 @@ namespace NavireHeritage.ClassesMetiers
                 this.passagers = passagers;
             }
         }
+        public override string ToString()
+        {
+            return base.ToString() + "\n Type de Navire Croisière : " + typeNavireCroisiere + "\n Nombre de passagers maximum : " + nbPassagersMaxi;
+        }
         /// <summary>
         /// Méthode qui met à jour la liste des passagers du bateau. Les passagers passés en paramètres doivent être ajoutés de la liste des passagers du navire. Une exception sera générée si le nombre de passagers dépasse le nombre de passagers maximum du navire. Aucun passager ne sera alors ajouté.
         /// </summary>
         /// <param name="passagers2"></param>
         public void Embarquer(List<Object> passagers2)
         {
-            foreach(Passager passager in passagers2)
+            if (passagers2.Count < (this.nbPassagersMaxi - this.passagers.Count))
             {
-                if (!this.passagers.ContainsKey(passager.NumPasseport))
+                foreach (Passager passager in passagers2)
                 {
-                    this.passagers.Add(passager.NumPasseport, passager);
-                }
-                else
-                {
-                    throw new GestionPortException("Le passager et déjà présent sur la liste");
+                    if (!this.passagers.ContainsKey(passager.NumPasseport))
+                    {
+                        this.passagers.Add(passager.NumPasseport, passager);
+                    }
+                    else
+                    {
+                        throw new GestionPortException("Le passager et déjà présent sur la liste");
+                    }
                 }
             }
+            else
+            {
+                throw new GestionPortException("Impossible d'ajouter cette liste au passager du navire, elle est supérieur au nombre de passager maximum");
+            }
+            
         }
         /// <summary>
         /// Méthode qui met à jour la liste des passagers du bateau. Les passagers passés en paramètres doivent être retirés de la liste des passagers du navire. Cette méthode retourne la liste des passagers passés en paramètre et qui n'ont pas été trouvés dans la liste des passagers du navire.

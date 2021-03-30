@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace NavireHeritage.ClassesMetiers
 {
-    class Port : IStationnable
+    class Port : Istationnable
     {
         /// <summary>
         /// Nom du port
@@ -288,8 +288,6 @@ namespace NavireHeritage.ClassesMetiers
         /// <param name="imo"></param>
         /// <param name="qteCharge"></param>
         public void Chargement(string imo,int qteCharge) { }
-
-        
         /// <summary>
         /// Retourne l'objet dont l'id a été passé en paramètre ou une exception de type Exception
         /// </summary>
