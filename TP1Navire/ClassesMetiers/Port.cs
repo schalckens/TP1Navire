@@ -107,57 +107,7 @@ namespace NavireHeritage.ClassesMetiers
         /// <param name="navire"></param>
         public void EnregistrerArrivee(Navire navire)
         {
-            if (navire is Cargo)
-            {
-                if (this.NbPortique > navireArrives.Count)
-                {
-                    navireArrives.Add(navire.Imo, navire);
-                }
-                else
-                {
-                    this.AjoutNavireEnAttente(navire);
-                    throw new GestionPortException("Bateau mis en attente, il ne reste plus de quais libres pour les cargos");
-                }
-            }
-            else if (navire is Croisiere)
-            {
-                if (this.NbQuaisPassager > navireArrives.Count)
-                {
-                    navireAttendus.Add(navire.Imo, navire);
-                }
-                else
-                {
-                    this.AjoutNavireEnAttente(navire);
-                    throw new GestionPortException("Bateau mis en attente, il ne reste plus de quais libres pour les navires de croisières");
-                }
-            }
-            else if (navire is Tanker)
-            {
-                if (Navire.TonnageDWT <= 130000)
-                {
-                    if (this.nbQuaisTanker < navireArrives.Count)
-                    {
-                        navireAttendus.Add(navire.Imo, navire);
-                    }
-                    else
-                    {
-                        this.AjoutNavireEnAttente(navire);
-                        throw new GestionPortException("Bateau mis en attente, il ne reste plus de quais libres pour les tankers");
-                    }
-                }
-                else
-                {
-                    if (this.NbQuaisSuperTanker < navireArrives.Count)
-                    {
-                        navireAttendus.Add(navire.Imo, navire);
-                    }
-                    else
-                    {
-                        this.AjoutNavireEnAttente(navire);
-                        throw new GestionPortException("Bateau mis en attente, il ne reste plus de quais libres pour les super tankers");
-                    }
-                }
-            } 
+            this.EnregistrerArrivee(navire.Imo);
         }
         /// <summary>
         /// Méthode surcharge : enregistrement de l'arrivée d'un navire enregistré en tant que arrivée prévue. String = son id
@@ -167,15 +117,16 @@ namespace NavireHeritage.ClassesMetiers
         {
             if (navireAttendus.ContainsKey(imo))
             {
-                foreach (Navire navire in navireAttendus.Values)
-                {
-                    if (navire.Imo == imo)
-                    {
-                        EnregistrerArrivee(navire);
-                    }
-                }
+                Navire navire = this.navireAttendus[imo];
+                
+            }
+            else
+            {
+                throw new GestionPortException("");
             }
         }
+
+        private Navire GestionArrivee(Cargo cargo) { return cargo; }
         /// <summary>
         /// enregistrement du départ d'un navire présent dans le port. String = son id
         /// On ne peut enregistrer un départ que si le Navire est présent dans le port.
