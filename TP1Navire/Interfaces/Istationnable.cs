@@ -17,7 +17,7 @@ namespace Station.Interfaces
         /// susceptibles d'arriver dans la station (port, aéroport,…)
         /// </summary>
         /// <param name="obj"></param>
-        public void EnregistrerArriveePrevue(Navire navire);
+        public void EnregistrerArriveePrevue(Navire objet);
         /// <summary>
         /// Méthode qui enregistre l'arrivée réelle de l'objet.
         /// </summary>
